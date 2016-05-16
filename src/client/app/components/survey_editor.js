@@ -11,6 +11,35 @@ export default class SurveyEditor extends React.Component {
     };
   }
 
+  handleFormChange(formData) {
+    this.setState(formData);
+  }
+
+  handleDragOver(e) {
+    // handleDrop が呼び出されるために必要
+    // https://code.google.com/p/chromium/issues/detail?id=168387
+    e.preventDefault();
+  }
+
+  handleDragEnter() {
+    this.setState({dropZoneEntered: true});
+  }
+
+  handleDragLeave() {
+    this.setState({dropZoneEntered: false});
+  }
+
+  handleDrop(e) {
+    const questionType = e.dataTransfer.getData('questionType');
+    let questions = this.state.questions;
+    questions = questions.concat({ type: questionType });
+
+    this.setState({
+      questions,
+      dropZoneEntered: false
+    });
+  }
+
   render() {
     const questions = this.state.questions;
 
