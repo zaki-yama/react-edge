@@ -8,6 +8,14 @@ export default class AnswerRadioInput extends React.Component {
     };
   }
 
+  handleChanged(e) {
+    const checked = e.target.checked;
+    this.setState({checked});
+    if (checked) {
+      this.props.onChanged(this.props.value);
+    }
+  }
+
   render() {
     return (
       <div className="radio">
@@ -16,7 +24,8 @@ export default class AnswerRadioInput extends React.Component {
             name={this.props.name}
             id={this.state.id}
             value={this.props.value}
-            checked={this.state.checked} />
+            checked={this.state.checked}
+            onChange={this.handleChanged} />
           {this.props.label}
         </label>
       </div>
@@ -29,7 +38,8 @@ AnswerRadioInput.propTypes = {
   name: React.PropTypes.string.isRequired,
   label: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
-  checked: React.PropTypes.bool
+  checked: React.PropTypes.bool,
+  onChanged: React.PropTypes.func.isRequired
 };
 
 AnswerRadioInput.defaultProps = {

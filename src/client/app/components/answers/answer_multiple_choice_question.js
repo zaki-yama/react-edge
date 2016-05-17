@@ -8,6 +8,11 @@ export default class AnswerMultipleChoiceQuestion extends React.Component {
     };
   }
 
+  handleChanged(value) {
+    this.setState({value});
+    this.props.onCompleted(value);
+  }
+
   renderChoices() {
     return this.props.choices.map((choice, i) => {
       return (
@@ -16,7 +21,9 @@ export default class AnswerMultipleChoiceQuestion extends React.Component {
           name={this.state.id}
           label={choice}
           value={choice}
-          checked={this.state.value === choice} />
+          checked={this.state.value === choice}
+          onChanged={this.handleChanged}
+        />
       );
     }
   }
