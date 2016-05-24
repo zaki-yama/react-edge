@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MyForm from './ch09/MyForm';
+import Select from './ch09/Select';
 
 ReactDOM.render(
-  <MyForm />,
+  <Select />,
   document.getElementById('root')
 );
